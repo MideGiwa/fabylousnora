@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import { DUMMY_PRODUCTS } from './ShopForMen'; // Assuming this path is correct
-import ProductCard from '../Components/ProductCard'; // Assuming this path is correct
+import ProductCard from '../components/ProductCard.jsx'; // Assuming this path is correct
 import CartOverlay from './CartOverlay';
 
 function ProductDetailsContent({ selectedSize, setSelectedSize, quantity, handleDecrement, handleIncrement }) {
