@@ -14,9 +14,7 @@ const ProductCard = ({ product }) => {
   }
 
   // THIS IS THE FIX — Vite gives you an object { default: "url" }
-  const imageSrc = typeof product.image === "object" && product.image !== null
-    ? product.image.default || product.image
-    : product.image || "https://via.placeholder.com/600x800/f8f8f8/999?text=No+Image";
+  const imageSrc = typeof product.image === "object" && product.image !== null ? product.image.default || product.image : product.image || "https://via.placeholder.com/600x800/f8f8f8/999?text=No+Image";
 
   const title = product.title || "No title";
   const price = Number(product.price) || 0;
@@ -25,23 +23,18 @@ const ProductCard = ({ product }) => {
   return (
     <Link
       to={`/product/${id}`}
-      className="group block cursor-pointer transition-all duration-300 hover:-translate-y-2"
-    >
+      onClick={() => {
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
+      }}
+      className="group block cursor-pointer transition-all duration-300 hover:-translate-y-2">
       <div className="relative overflow-hidden aspect-[3/4] w-full shadow-sm mb-1 bg-gray-50">
-        <img
-          src={imageSrc}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 "
-          loading="lazy"
-        />
+        <img src={imageSrc} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 " loading="lazy" />
       </div>
 
       <div className="text-center px-2 pb-1">
-        <h3
-          className="font-bold text-sm leading-tight line-clamp-2"
-          style={{ fontFamily: "Nunito, sans-serif" }}
-          title={title}
-        >
+        <h3 className="font-bold text-sm leading-tight line-clamp-2" style={{ fontFamily: "Nunito, sans-serif" }} title={title}>
           {title}
         </h3>
         <p className="text-gray-800 font-semibold text-sm mt-1" style={{ fontFamily: "Nunito, sans-serif" }}>

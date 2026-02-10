@@ -12,7 +12,12 @@ const Events = () => {
   const [isEventActive, setIsEventActive] = useState(true);
 
   useEffect(() => {
-    window.scroll(0, 0);
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 500);
   }, []);
 
   return (

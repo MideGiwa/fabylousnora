@@ -1,6 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../context/context";
 
 const CategoryBanner = ({ title, image }) => {
+  const { setType } = useContext(AppContext);
   return (
     <div className="relative w-full h-[55vh] min-h-[360px] max-h-[700px] overflow-hidden group cursor-pointer">
       {/* Background Image */}
@@ -14,15 +18,18 @@ const CategoryBanner = ({ title, image }) => {
       />
 
       {/* Gradient Overlay – stronger on mobile */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent 
-                      md:from-black/70 md:via-black/30" />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent 
+                      md:from-black/70 md:via-black/30"
+      />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-end pb-8 px-4 
+      <div
+        className="relative z-10 h-full flex flex-col justify-end pb-8 px-4 
                       sm:px-6 md:pb-12 md:px-8 lg:pb-16 lg:px-12 xl:px-20">
-        
         {/* Title */}
-        <h3 className="
+        <h3
+          className="
           text-3xl xs:text-4xl 
           sm:text-5xl 
           md:text-5xl lg:text-6xl xl:text-7xl 
@@ -34,8 +41,20 @@ const CategoryBanner = ({ title, image }) => {
         </h3>
 
         {/* Button – no underline, just arrow */}
-        <button
-          className="
+        <Link
+          to={`/category/${title.props.children.toLowerCase()}`}
+          onClick={() => {
+            setType(title.props.children);
+            setTimeout(() => {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }, 500);
+          }}
+          className="group mt-4">
+          <button
+            className="
             mt-6 md:mt-8 
             inline-flex items-center gap-3 
             text-white 
@@ -47,18 +66,17 @@ const CategoryBanner = ({ title, image }) => {
             active:text-[#BD007C]
             focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pink-500/50
           "
-          style={{ fontFamily: "Nunito, sans-serif" }}
-          aria-label={`View all ${title}`}
-        >
-          View All
-          <span
-            aria-hidden="true"
-            className="text-xl transition-transform duration-300 group-hover:translate-x-3 
-                       group-active:translate-x-3"
-          >
-            →
-          </span>
-        </button>
+            style={{ fontFamily: "Nunito, sans-serif" }}
+            aria-label={`View all ${title}`}>
+            View All
+            <span
+              aria-hidden="true"
+              className="text-xl transition-transform duration-300 group-hover:translate-x-3 
+                       group-active:translate-x-3">
+              →
+            </span>
+          </button>
+        </Link>
       </div>
 
       {/* Subtle bottom fade */}

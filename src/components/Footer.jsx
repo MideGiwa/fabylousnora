@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faInstagram, faTwitter, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { AppContext } from "../context/context";
+import { useContext } from "react";
 
 const Footer = () => {
+  const { setType } = useContext(AppContext);
+
   // Navigation items using IDs to match your header logic
   const categories = [
     { name: "Men", id: "men" },
@@ -14,10 +18,12 @@ const Footer = () => {
   ];
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 500);
   };
 
   const quickLinks = [
@@ -70,7 +76,14 @@ const Footer = () => {
               <ul className="space-y-3">
                 {categories.map((item) => (
                   <li key={item.name}>
-                    <Link onClick={scrollToTop} to={`category/${item.id}`} className="hover:text-[#BD007C] transition duration-300 text-sm block cursor-pointer" style={{ fontFamily: "Nunito, sans-serif" }}>
+                    <Link
+                      onClick={() => {
+                        scrollToTop();
+                        setType(item.name === "Jewelry" ? "Accessories" : item.name);
+                      }}
+                      to={`category/${item.id === "jewelry" ? "accessories" : item.name}`}
+                      className="hover:text-[#BD007C] transition duration-300 text-sm block cursor-pointer"
+                      style={{ fontFamily: "Nunito, sans-serif" }}>
                       {item.name}
                     </Link>
                   </li>

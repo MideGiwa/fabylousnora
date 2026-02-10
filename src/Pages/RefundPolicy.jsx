@@ -1,5 +1,5 @@
 // src/Pages/RefundPolicy.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const policies = {
   terms: {
@@ -187,34 +187,33 @@ Email: info@fabulousbynora.com`,
 };
 
 function RefundPolicy() {
-  const [activeTab, setActiveTab] = useState('refund');
+  const [activeTab, setActiveTab] = useState("refund");
   const activeColor = "rgba(189, 0, 124, 1)"; // Your brand magenta-purple
 
   // Always scroll to top when the page is visited
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 500);
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-
         {/* Tabs */}
         <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-12">
           {Object.entries(policies).map(([key, policy]) => (
             <button
               key={key}
               onClick={() => setActiveTab(key)}
-              className={`px-6 py-2 text-sm sm:text-base font-semibold tracking-wider transition-all duration-300 border-b-2 ${
-                activeTab === key
-                  ? `text-[${activeColor}] border-[${activeColor}]`
-                  : "text-gray-600 border-transparent hover:text-gray-900"
-              }`}
+              className={`px-6 py-2 text-sm sm:text-base font-semibold tracking-wider transition-all duration-300 border-b-2 ${activeTab === key ? `text-[${activeColor}] border-[${activeColor}]` : "text-gray-600 border-transparent hover:text-gray-900"}`}
               style={{
                 fontFamily: "'Playfair Display', serif",
                 borderBottom: activeTab === key ? `2px solid ${activeColor}` : "2px solid transparent",
-              }}
-            >
+              }}>
               {policy.title}
             </button>
           ))}
@@ -222,28 +221,17 @@ function RefundPolicy() {
 
         {/* Content Card */}
         <div className="bg-white shadow-xl rounded-lg p-8 sm:p-12">
-          <h1
-            className="text-2xl sm:text-3xl font-bold text-center mb-4"
-            style={{ fontFamily: "'Playfair Display', serif", color: activeColor }}
-          >
+          <h1 className="text-2xl sm:text-3xl font-bold text-center mb-4" style={{ fontFamily: "'Playfair Display', serif", color: activeColor }}>
             {policies[activeTab].title}
           </h1>
-          <p className="text-center text-gray-500 mb-10">
-            Last Updated: {policies[activeTab].lastUpdated}
-          </p>
+          <p className="text-center text-gray-500 mb-10">Last Updated: {policies[activeTab].lastUpdated}</p>
 
-          <div className="prose prose-lg max-w-none text-gray-700 whitespace-pre-line leading-relaxed">
-            {policies[activeTab].content}
-          </div>
+          <div className="prose prose-lg max-w-none text-gray-700 whitespace-pre-line leading-relaxed">{policies[activeTab].content}</div>
 
           <div className="mt-12 text-center">
             <p className="text-sm text-gray-500">
               Questions? Email us at{" "}
-              <a
-                href="mailto:info@fabulousbynora.com"
-                className="underline"
-                style={{ color: activeColor }}
-              >
+              <a href="mailto:info@fabulousbynora.com" className="underline" style={{ color: activeColor }}>
                 info@fabulousbynora.com
               </a>
             </p>

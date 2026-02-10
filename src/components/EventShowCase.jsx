@@ -35,7 +35,7 @@ const EventShowCase = () => {
         </div>
 
         {/* <div className="eventsClothes grid grid-cols-4 gap-auto bg-white p-16"> */}
-        <div className="eventsClothes grid grid-cols-4 bg-white justify-between mt-10 px-16 mt-20">
+        <div className="eventsClothes grid grid-cols-2 lg:grid-cols-4 bg-white justify-between mt-10 px-4 md:px-16 mt-20">
           {eventProductsClothes.map((product, index) => (
             <div
               onClick={() => {
@@ -43,19 +43,19 @@ const EventShowCase = () => {
                 navigateToEventItem();
               }}
               key={index}
-              className="eventProductCard shadow-lg rounded-lg w-[21vw]  px-3 mb-6">
-              <img src={product.image} alt={product.name} className="eventProductImage w-full h-[40vh]" />
-              <div className="flex justify-between p-5">
-                <div className="" style={{ fontFamily: "Playfair Display" }}>
+              className="eventProductCard shadow-lg rounded-lg w-[45vw] lg:w-[21vw]  px-3 mb-6">
+              <img src={product.image} alt={product.name} className="eventProductImage w-full h-[30vh] md:h-[40vh]" />
+              <div className="flex justify-between p-2 md:p-5">
+                <div className="text-[2.5vw]" style={{ fontFamily: "Playfair Display" }}>
                   {product.name}
                 </div>
-                <div style={{ fontFamily: "Manrope" }} className="">
+                <div style={{ fontFamily: "Manrope" }} className="text-[2.5vw]">
                   {product.no_ofImages} Images
                 </div>
               </div>
-              <div className="flex pb-5 px-5 items-center">
-                <img src={calenderIcon} alt="Calendar Icon" className="w-5 h-5" />
-                <div className="ml-2 text-[#00000080]" style={{ fontFamily: "Manrope" }}>
+              <div className="flex pb-1.5 px-2 md:pb-5 md:px-5 items-center">
+                <img src={calenderIcon} alt="Calendar Icon" className="w-[3vw] md:w-5 md:h-5" />
+                <div className="ml-2 text-[#00000080] text-[2vw]" style={{ fontFamily: "Manrope" }}>
                   {product.date}
                 </div>
               </div>

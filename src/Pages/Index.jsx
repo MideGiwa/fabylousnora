@@ -16,28 +16,56 @@ import Jewelry3 from "../components/IMG/jewelry3.jpg";
 import Jewelry4 from "../components/IMG/jewelry4.jpg";
 import MenCategory from "../components/IMG/mencategory.jpg";
 import WomenCategory from "../components/IMG/womencategory.jpg";
+import { useContext } from "react";
+import { AppContext } from "../context/context";
 
 const Index = () => {
-  const newArrivals = [
-    { id: 1, image: newArrival1, title: "Ankara Fabric For Ladies", price: 300 },
-    { id: 2, image: newArrival2, title: "Ankara Fabric For Ladies", price: 100 },
-    { id: 3, image: newArrival3, title: "Ankara Fabric For Ladies", price: 100 },
-    { id: 4, image: newArrival4, title: "Ankara Fabric For Ladies", price: 100 },
-  ];
+  const { DUMMY_PRODUCTS } = useContext(AppContext);
 
-  const queensCollection = [
-    { id: 5, image: newArrival3, title: "Ankara Fabric For Ladies", price: 300 },
-    { id: 6, image: newArrival1, title: "Ankara Fabric For Ladies", price: 100 },
-    { id: 7, image: newArrival4, title: "Ankara Fabric For Ladies", price: 100 },
-    { id: 8, image: newArrival2, title: "Ankara Fabric For Ladies", price: 100 },
-  ];
+  const newArrivals = DUMMY_PRODUCTS.filter((product) => {
+    const productDate = new Date(product.date);
+    const today = new Date();
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(today.getDate() - 30);
+    return productDate >= thirtyDaysAgo;
+  })
+    // Sort by date descending (newest first)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    // Take only the first 8 products
+    .slice(0, 8);
 
-  const accessories = [
-    { id: 9,  image: Jewelry1, title: "Gold Necklace Set", price: 180 },
-    { id: 10, image: Jewelry2, title: "Pearl Earrings", price: 120 },
-    { id: 11, image: Jewelry3, title: "Diamond Ring", price: 850 },
-    { id: 12, image: Jewelry4, title: "Silver Bracelet", price: 95 },
-  ];
+  // const newArrivals = [
+  //   { id: 1, image: newArrival1, title: "Ankara Fabric For Ladies", price: 300 },
+  //   { id: 2, image: newArrival2, title: "Ankara Fabric For Ladies", price: 100 },
+  //   { id: 3, image: newArrival3, title: "Ankara Fabric For Ladies", price: 100 },
+  //   { id: 4, image: newArrival4, title: "Ankara Fabric For Ladies", price: 100 },
+  // ];
+
+  const queensCollection = DUMMY_PRODUCTS.filter((product) => product.type === "Women")
+    // Sort by date descending (newest first)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    // Take only the first 8 products
+    .slice(0, 8);
+
+  // const queensCollection = [
+  //   { id: 5, image: newArrival3, title: "Ankara Fabric For Ladies", price: 300 },
+  //   { id: 6, image: newArrival1, title: "Ankara Fabric For Ladies", price: 100 },
+  //   { id: 7, image: newArrival4, title: "Ankara Fabric For Ladies", price: 100 },
+  //   { id: 8, image: newArrival2, title: "Ankara Fabric For Ladies", price: 100 },
+  // ];
+
+  const accessories = DUMMY_PRODUCTS.filter((product) => product.type === "Accessories")
+    // Sort by date descending (newest first)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    // Take only the first 8 products
+    .slice(0, 8);
+
+  // const accessories = [
+  //   { id: 9, image: Jewelry1, title: "Gold Necklace Set", price: 180 },
+  //   { id: 10, image: Jewelry2, title: "Pearl Earrings", price: 120 },
+  //   { id: 11, image: Jewelry3, title: "Diamond Ring", price: 850 },
+  //   { id: 12, image: Jewelry4, title: "Silver Bracelet", price: 95 },
+  // ];
 
   return (
     <div className="bg-background min-h-screen">

@@ -3,8 +3,11 @@ import { User, ShoppingCart, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import NoraLogo from "./IMG/noralogo.png";
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../context/context";
 
 const Header = () => {
+  const { setType } = useContext(AppContext);
   const [activeCategory, setActiveCategory] = useState("All");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // ← fixed here
 
@@ -80,10 +83,20 @@ const Header = () => {
               <Link
                 key={cat}
                 to={cat === "All" ? "/" : `/category/${cat.toLowerCase()}`}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setTimeout(() => {
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                  }, 500);
+                  setType(cat);
+                }}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap
                 ${activeCategory === cat ? "bg-[#BD007C] text-white" : "text-[#BD007C] bg-[#CCCCCC1A] hover:bg-[#BD007C] hover:text-white"}`}>
                 {cat}
+                {/* {alert(cat)} */}
               </Link>
             ))}
           </nav>

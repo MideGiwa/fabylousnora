@@ -12,7 +12,10 @@ const EventItemShowCase = () => {
   console.log(useContext(AppContext));
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, []);
 
   const handleViewImage = (image) => {
@@ -32,27 +35,27 @@ const EventItemShowCase = () => {
           </div>
         </div>
       )}
-      <div className="px-16 my-8">
+      <div className="px-4 md:px-16 my-8">
         <div className="title ">
           <span className="text-[#00000066]">Gallery</span> / {eventProductsClothes[selectedCothes]?.name}
         </div>
-        <div className="eventsClothes grid grid-cols-4 bg-white justify-between mt-10 ">
+        <div className="eventsClothes grid grid-cols-2 md:grid-cols-4 bg-white justify-between mt-10 ">
           {eventProductsClothes
             .filter((product, index) => product.name === eventProductsClothes[selectedCothes].name)
             .map((product, index) => (
-              <div onClick={() => handleViewImage(product.image)} key={index} className="eventProductCard shadow-lg rounded-lg w-[21vw] px-3 mb-6">
-                <img src={product.image} alt={product.name} className="eventProductImage w-full h-[40vh]" />
-                <div className="flex justify-between p-5">
-                  <div className="" style={{ fontFamily: "Playfair Display" }}>
+              <div onClick={() => handleViewImage(product.image)} key={index} className="eventProductCard shadow-lg rounded-lg w-[45vw] md:w-[21vw] px-3 mb-6">
+                <img src={product.image} alt={product.name} className="eventProductImage w-full h-[30vh] md:h-[40vh]" />
+                <div className="flex justify-between p-2 md:p-5">
+                  <div className="text-[2.5vw]" style={{ fontFamily: "Playfair Display" }}>
                     {product.name}
                   </div>
-                  <div style={{ fontFamily: "Manrope" }} className="">
+                  <div style={{ fontFamily: "Manrope" }} className="text-[2.5vw]">
                     {product.no_ofImages} Images
                   </div>
                 </div>
-                <div className="flex pb-5 px-5 items-center">
-                  <img src={calenderIcon} alt="Calendar Icon" className="w-5 h-5" />
-                  <div className="ml-2 text-[#00000080]" style={{ fontFamily: "Manrope" }}>
+                <div className="flex pb-1.5 md:pb-5 px-2 md:px-5 items-center">
+                  <img src={calenderIcon} alt="Calendar Icon" className="w-[3vw] md:w-5 md:h-5" />
+                  <div className="ml-2 text-[#00000080] text-[2vw]" style={{ fontFamily: "Manrope" }}>
                     {product.date}
                   </div>
                 </div>
