@@ -19,7 +19,7 @@ const Header = () => {
     { name: "About Us", to: "/aboutus" },
     { name: "Custom Orders", to: "/custom" },
     { name: "Refund Policy", to: "/refund" },
-    { name: "Events", to: "/events" },
+    { name: "Gallery", to: "/events" },
   ];
 
   const location = useLocation();
