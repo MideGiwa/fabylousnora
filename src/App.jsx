@@ -22,6 +22,7 @@ import LoginPage from "./Pages/LoginPage.jsx";
 import { useContext } from "react";
 import { AppContext } from "./context/context.jsx";
 import PaymentSuccess from "./Pages/PaymentSuccess.jsx";
+import Dashboard from "./Pages/Dashboard.jsx";
 
 function App() {
   const { showCart, setShowCart, cartItems, setCartItems } = useContext(AppContext);
@@ -36,7 +37,7 @@ function App() {
         {/* Public / Store pages */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/success" element={<PaymentSuccess />} />
-        {/* <Route path="/" element={<Index />} /> */}
+        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
         <Route path="/" element={<Index />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/custom" element={<CustomOrder />} />

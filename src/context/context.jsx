@@ -1,62 +1,62 @@
 import { createContext } from "react";
 import { useState } from "react";
-import eventSample1 from "../components/IMG/eventSample1.png";
-import eventSample2 from "../components/IMG/eventSample2.png";
-import sample3 from "../components/IMG/sample3.png";
-import sample4 from "../components/IMG/sample4.png";
-import sample5 from "../components/IMG/sample5.png";
-import sample6 from "../components/IMG/sample6.png";
-import sample7 from "../components/IMG/sample7.png";
-import sample8 from "../components/IMG/sample8.png";
+import eventSample1 from "../components/IMG_WEBP/eventSample1.webp";
+import eventSample2 from "../components/IMG_WEBP/eventSample2.webp";
+import sample3 from "../components/IMG_WEBP/sample3.webp";
+import sample4 from "../components/IMG_WEBP/sample4.webp";
+import sample5 from "../components/IMG_WEBP/sample5.webp";
+import sample6 from "../components/IMG_WEBP/sample6.webp";
+import sample7 from "../components/IMG_WEBP/sample7.webp";
+import sample8 from "../components/IMG_WEBP/sample8.webp";
 
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 
-import newArrival1 from "../components/IMG/newarrival1.jpg";
-import newArrival2 from "../components/IMG/newarrival2.jpg";
-import newArrival3 from "../components/IMG/newarrival3.jpg";
-import newArrival4 from "../components/IMG/newarrival4.jpg";
-import Jewelry1 from "../components/IMG/jewelry1.jpg";
-import Jewelry2 from "../components/IMG/jewelry2.jpg";
-import Jewelry3 from "../components/IMG/jewelry3.jpg";
-import Jewelry4 from "../components/IMG/jewelry4.jpg";
+import newArrival1 from "../components/IMG_WEBP/newarrival1.webp";
+import newArrival2 from "../components/IMG_WEBP/newarrival2.webp";
+import newArrival3 from "../components/IMG_WEBP/newarrival3.webp";
+import newArrival4 from "../components/IMG_WEBP/newarrival4.webp";
+import Jewelry1 from "../components/IMG_WEBP/jewelry1.webp";
+import Jewelry2 from "../components/IMG_WEBP/jewelry2.webp";
+import Jewelry3 from "../components/IMG_WEBP/jewelry3.webp";
+import Jewelry4 from "../components/IMG_WEBP/jewelry4.webp";
 
 // /////////////////////////men
 // /////////////////////////men
 
-import men1 from "../components/IMG/men1.png";
-import men2 from "../components/IMG/men2.png";
-import men3 from "../components/IMG/men3.png";
-import men4 from "../components/IMG/men4.png";
-import men5 from "../components/IMG/men5.png";
-import men6 from "../components/IMG/men6.png";
-import men7 from "../components/IMG/men7.png";
-import men8 from "../components/IMG/men8.png";
+import men1 from "../components/IMG_WEBP/men1.webp";
+import men2 from "../components/IMG_WEBP/men2.webp";
+import men3 from "../components/IMG_WEBP/men3.webp";
+import men4 from "../components/IMG_WEBP/men4.webp";
+import men5 from "../components/IMG_WEBP/men5.webp";
+import men6 from "../components/IMG_WEBP/men6.webp";
+import men7 from "../components/IMG_WEBP/men7.webp";
+import men8 from "../components/IMG_WEBP/men8.webp";
 
 // /////////////////////////children
 // /////////////////////////children
-import child1 from "../components/IMG/child1.png";
-import child2 from "../components/IMG/child2.png";
-import child3 from "../components/IMG/child3.png";
-import child4 from "../components/IMG/child4.png";
-import child5 from "../components/IMG/child5.png";
-import child6 from "../components/IMG/child6.png";
-import child7 from "../components/IMG/child7.png";
-import child8 from "../components/IMG/child8.png";
+import child1 from "../components/IMG_WEBP/child1.webp";
+import child2 from "../components/IMG_WEBP/child2.webp";
+import child3 from "../components/IMG_WEBP/child3.webp";
+import child4 from "../components/IMG_WEBP/child4.webp";
+import child5 from "../components/IMG_WEBP/child5.webp";
+import child6 from "../components/IMG_WEBP/child6.webp";
+import child7 from "../components/IMG_WEBP/child7.webp";
+import child8 from "../components/IMG_WEBP/child8.webp";
 
 //////////////////////////////////// more women
 //////////////////////////////////// more women
 
-import women1 from "../components/IMG/women1.png";
-import women2 from "../components/IMG/women2.png";
-import women3 from "../components/IMG/women3.png";
-import women4 from "../components/IMG/women4.png";
+import women1 from "../components/IMG_WEBP/women1.webp";
+import women2 from "../components/IMG_WEBP/women2.webp";
+import women3 from "../components/IMG_WEBP/women3.webp";
+import women4 from "../components/IMG_WEBP/women4.webp";
 
 ///////////////////////////////////// more jewelry
-import Jewelry5 from "../components/IMG/jewelry5.png";
-import Jewelry6 from "../components/IMG/jewelry6.png";
-import Jewelry7 from "../components/IMG/jewelry7.png";
-import Jewelry8 from "../components/IMG/jewelry8.png";
+import Jewelry5 from "../components/IMG_WEBP/jewelry5.webp";
+import Jewelry6 from "../components/IMG_WEBP/jewelry6.webp";
+import Jewelry7 from "../components/IMG_WEBP/jewelry7.webp";
+import Jewelry8 from "../components/IMG_WEBP/jewelry8.webp";
 
 const AppContext = createContext();
 const AppProvider = ({ children }) => {

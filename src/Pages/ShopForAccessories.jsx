@@ -3,10 +3,10 @@ import React from "react";
 import { useContext, useState } from "react";
 import { AppContext } from "../context/context";
 import { motion } from "framer-motion";
-import Heroimg from "../components/IMG/abouthero.png";
+import Heroimg from "../components/IMG_WEBP/abouthero.webp";
 import FilterSidebar from "./FilterSidebar";
 import ProductCard from "./ProductCard.jsx"; // Adjust the path as needed
-import accessoreHero from "../components/IMG/accessoreHero.png"; // Assuming this is the correct path for the hero image
+import accessoreHero from "../components/IMG_WEBP/accessoreHero.webp"; // Assuming this is the correct path for the hero image
 
 const ShopForAccessories = () => {
   const { DUMMY_PRODUCTS, type } = useContext(AppContext);

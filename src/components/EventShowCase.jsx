@@ -1,7 +1,5 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import eventSample1 from "../components/IMG/eventSample1.png";
-import eventSample2 from "../components/IMG/eventSample2.png";
 import calenderIcon from "../components/IMG/calendar.svg";
 import { Routes, Route } from "react-router-dom";
 import { AppContext } from "../context/context.jsx";
@@ -11,7 +9,7 @@ import { AppContext } from "../context/context.jsx";
 ////////////////////////////////////
 
 import React from "react";
-import galleryHero from "../components/IMG/Fabulous gallery.png";
+import galleryHero from "../components/IMG_WEBP/Fabulous gallery.webp";
 
 const EventShowCase = () => {
   const { eventProductsClothes, selectedCothes, setSelectedCothes, DUMMY_PRODUCTS } = useContext(AppContext);

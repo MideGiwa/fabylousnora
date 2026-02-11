@@ -5,17 +5,17 @@ import ProductSection from "../components/ProductSection";
 import CategoryBanner from "../components/CategoryBanner";
 
 // Images
-import newArrival1 from "../components/IMG/newarrival1.jpg";
-import newArrival2 from "../components/IMG/newarrival2.jpg";
-import newArrival3 from "../components/IMG/newarrival3.jpg";
-import newArrival4 from "../components/IMG/newarrival4.jpg";
-import KidsBgImg from "../components/IMG/kidsbgImg.jpg";
-import Jewelry1 from "../components/IMG/jewelry1.jpg";
-import Jewelry2 from "../components/IMG/jewelry2.jpg";
-import Jewelry3 from "../components/IMG/jewelry3.jpg";
-import Jewelry4 from "../components/IMG/jewelry4.jpg";
-import MenCategory from "../components/IMG/mencategory.jpg";
-import WomenCategory from "../components/IMG/womencategory.jpg";
+import newArrival1 from "../components/IMG_WEBP/newarrival1.webp";
+import newArrival2 from "../components/IMG_WEBP/newarrival2.webp";
+import newArrival3 from "../components/IMG_WEBP/newarrival3.webp";
+import newArrival4 from "../components/IMG_WEBP/newarrival4.webp";
+import KidsBgImg from "../components/IMG_WEBP/kidsbgImg.webp";
+import Jewelry1 from "../components/IMG_WEBP/jewelry1.webp";
+import Jewelry2 from "../components/IMG_WEBP/jewelry2.webp";
+import Jewelry3 from "../components/IMG_WEBP/jewelry3.webp";
+import Jewelry4 from "../components/IMG_WEBP/jewelry4.webp";
+import MenCategory from "../components/IMG_WEBP/mencategory.webp";
+import WomenCategory from "../components/IMG_WEBP/womencategory.webp";
 import { useContext } from "react";
 import { AppContext } from "../context/context";
 

@@ -6,15 +6,15 @@ import { AppContext } from "../context/context.jsx"; // Adjust the path as neede
 import FilterSidebar from "./FilterSidebar.jsx";
 import ProductCard from "./ProductCard.jsx";
 
-import Heroimg from "../components/IMG/abouthero.png";
-import newArrival1 from "../components/IMG/newarrival1.jpg";
-import newArrival2 from "../components/IMG/newarrival2.jpg";
-import newArrival3 from "../components/IMG/newarrival3.jpg";
-import newArrival4 from "../components/IMG/newarrival4.jpg";
-import Jewelry1 from "../components/IMG/jewelry1.jpg";
-import Jewelry2 from "../components/IMG/jewelry2.jpg";
-import Jewelry3 from "../components/IMG/jewelry3.jpg";
-import Jewelry4 from "../components/IMG/jewelry4.jpg";
+import Heroimg from "../components/IMG_WEBP/abouthero.webp"; // Assuming this is the correct path for the hero image
+import newArrival1 from "../components/IMG_WEBP/newarrival1.webp";
+import newArrival2 from "../components/IMG_WEBP/newarrival2.webp";
+import newArrival3 from "../components/IMG_WEBP/newarrival3.webp";
+import newArrival4 from "../components/IMG_WEBP/newarrival4.webp";
+import Jewelry1 from "../components/IMG_WEBP/jewelry1.webp";
+import Jewelry2 from "../components/IMG_WEBP/jewelry2.webp";
+import Jewelry3 from "../components/IMG_WEBP/jewelry3.webp";
+import Jewelry4 from "../components/IMG_WEBP/jewelry4.webp";
 
 // ==========================
 // 4. Main ShopForMen Component (UPDATED gridClasses definition)
