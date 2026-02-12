@@ -76,9 +76,9 @@ function OrderSummary({ cartItems, shippingFee, handleMakePayment, isProcessing 
           "Make Payment"
         )}
       </button>
-      <button className="w-full bg-[#ffffff] font-nunito text-[#6A0DAD] text-[12px] border border-[#6A0DAD] font-bold py-3 transition mt-4 disabled:bg-gray-400 " disabled={!cartItems.length || isProcessing}>
+      {/* <button className="w-full bg-[#ffffff] font-nunito text-[#6A0DAD] text-[12px] border border-[#6A0DAD] font-bold py-3 transition mt-4 disabled:bg-gray-400 " disabled={!cartItems.length || isProcessing}>
         Buy Now Pay Later
-      </button>
+      </button> */}
     </div>
   );
 }
@@ -183,7 +183,7 @@ function CheckoutPage() {
           </>
         )}
 
-        {formData.deliveryOption === "pickup" && <p className="mt-4 text-gray-600 italic font-nunito text-sm">* Pick up location details will be sent to your email after payment confirmation.</p>}
+        {formData.deliveryOption === "pickup" && <p className="mt-4 text-gray-600 italic font-nunito text-sm">* Pick up location: 13629 Alief Clodine Rd, Suite C, Houston TX 77082 (Behind Now And Forever Gas Station)</p>}
       </form>
     </div>
   );

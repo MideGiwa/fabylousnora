@@ -19,12 +19,12 @@ const Header = () => {
     { name: "About Us", to: "/aboutus" },
     { name: "Custom Orders", to: "/custom" },
     { name: "Refund Policy", to: "/refund" },
-    { name: "Gallery", to: "/events" },
+    { name: "Events", to: "/events" },
   ];
 
   const location = useLocation();
 
-  return location.pathname === "/events" || location.pathname === "/events/eventitem" || location.pathname === "/success" || location.pathname === "/login" ? (
+  return location.pathname === "/success" || location.pathname === "/login" ? (
     <></>
   ) : (
     <header className="bg-white sticky top-0 z-50">
@@ -80,30 +80,32 @@ const Header = () => {
 
       {/* Category Navigation */}
 
-      <div className="px-[6%] py-4 overflow-x-auto scrollbar-hide">
-        <nav className="flex items-center gap-3 min-w-max">
-          {categories.map((cat) => (
-            <Link
-              key={cat}
-              to={cat === "All" ? "/" : `/category/${cat.toLowerCase()}`}
-              onClick={() => {
-                setActiveCategory(cat);
-                setTimeout(() => {
-                  window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                  });
-                }, 500);
-                setType(cat);
-              }}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap
+      {location.pathname !== "/events" && location.pathname !== "/events/eventitem" && (
+        <div className="px-[6%] py-4 overflow-x-auto scrollbar-hide">
+          <nav className="flex items-center gap-3 min-w-max">
+            {categories.map((cat) => (
+              <Link
+                key={cat}
+                to={cat === "All" ? "/" : `/category/${cat.toLowerCase()}`}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setTimeout(() => {
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                  }, 500);
+                  setType(cat);
+                }}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap
                 ${activeCategory === cat ? "bg-[#BD007C] text-white" : "text-[#BD007C] bg-[#CCCCCC1A] hover:bg-[#BD007C] hover:text-white"}`}>
-              {cat}
-              {/* {alert(cat)} */}
-            </Link>
-          ))}
-        </nav>
-      </div>
+                {cat}
+                {/* {alert(cat)} */}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
 
       {/* Mobile Sidebar Menu – 85% width */}
       <div className={`fixed inset-0 z-50 lg:hidden transition-all duration-500 ${mobileMenuOpen ? "pointer-events-auto" : "pointer-events-none"}`}>

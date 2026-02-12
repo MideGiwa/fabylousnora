@@ -186,7 +186,7 @@ export default function SimpleAdmin() {
 
               <div className="p-4">
                 <h3 className="font-semibold text-lg mb-1">{p.name}</h3>
-                <p className="text-green-700 font-bold mb-2">₦{Number(p.price).toLocaleString()}</p>
+                <p className="text-green-700 font-bold mb-2">${Number(p.price).toLocaleString()}</p>
                 <p className="text-sm text-gray-600 mb-3 line-clamp-2">{p.description || "No description"}</p>
                 <p className="text-xs text-gray-500 mb-3 capitalize">Category: {p.category}</p>
 
