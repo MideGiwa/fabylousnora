@@ -10,7 +10,10 @@ export default function SimpleAdmin() {
     name: "",
     price: "",
     category: "women",
+    filter_options: "",
+    isEvent: false,
     description: "",
+    created_at: new Date().toISOString(),
   });
   const [imageFile, setImageFile] = useState(null);
   const [editingId, setEditingId] = useState(null);
@@ -128,13 +131,18 @@ export default function SimpleAdmin() {
           </div>
 
           <div>
-            <label className="block mb-2 font-medium">Category</label>
+            <label className="block mb-2 font-medium">Categories</label>
             <select name="category" value={form.category} onChange={handleChange} className="w-full border rounded px-4 py-2">
               <option value="women">Women</option>
               <option value="men">Men</option>
               <option value="kids">Kids</option>
               <option value="accessories">Accessories</option>
             </select>
+          </div>
+
+          <div>
+            <label className="block mb-2 font-medium">Filter Options</label>
+            <input placeholder="what category does it fall under?  is it agbada, kaftan etc" name="filter_options" value={form.filter_options} onChange={handleChange} required className="w-full border rounded px-4 py-2" />
           </div>
 
           <div className="md:col-span-2">

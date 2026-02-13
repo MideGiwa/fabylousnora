@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useState } from "react";
 import eventSample1 from "../components/IMG_WEBP/eventSample1.webp";
 import eventSample2 from "../components/IMG_WEBP/eventSample2.webp";
@@ -57,6 +57,7 @@ import Jewelry5 from "../components/IMG_WEBP/jewelry5.webp";
 import Jewelry6 from "../components/IMG_WEBP/jewelry6.webp";
 import Jewelry7 from "../components/IMG_WEBP/jewelry7.webp";
 import Jewelry8 from "../components/IMG_WEBP/jewelry8.webp";
+import { getAllProducts } from "../lib/supabaseClient";
 
 const AppContext = createContext();
 const AppProvider = ({ children }) => {
@@ -107,11 +108,40 @@ const AppProvider = ({ children }) => {
     { id: 42, isEvent: true, type: "Women", title: "StreetOuk", price: 120, image: sample8, category: "Event", date: "12-04-2026" },
   ];
 
+  const [productsData, setProductsData] = useState([]);
+
+  useEffect(() => {
+    getAllProducts()
+      .then((data) => {
+        const formattedData = data.map((item) => ({
+          id: item.id,
+          isEvent: item.isEvent,
+          type: item.category.charAt(0).toUpperCase() + item.category.slice(1),
+          title: item.name,
+          price: Number(item.price),
+          image: item.image_url || "", // use correct property          category: item.filter_options,
+          // date: item.created_at.split("T")[0],
+        }));
+
+        setProductsData(formattedData);
+        console.log(data);
+        // console.log(formattedData);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+        setProductsData([]);
+      });
+
+    // console.log(productsData);
+  }, []);
+
+  // console.log(productsData);
+
   const [type, setType] = useState("");
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
-  return <AppContext.Provider value={{ selectedCothes, setSelectedCothes, DUMMY_PRODUCTS, type, setType, showCart, setShowCart, cartItems, setCartItems }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ selectedCothes, setSelectedCothes, DUMMY_PRODUCTS, type, setType, showCart, setShowCart, cartItems, setCartItems, productsData }}>{children}</AppContext.Provider>;
 };
 export { AppContext, AppProvider };
 

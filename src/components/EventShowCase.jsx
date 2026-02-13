@@ -12,7 +12,7 @@ import React from "react";
 import galleryHero from "../components/IMG_WEBP/Fabulous gallery.webp";
 
 const EventShowCase = () => {
-  const { eventProductsClothes, selectedCothes, setSelectedCothes, DUMMY_PRODUCTS } = useContext(AppContext);
+  const { eventProductsClothes, selectedCothes, setSelectedCothes, productsData } = useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const EventShowCase = () => {
 
         {/* <div className="eventsClothes grid grid-cols-4 gap-auto bg-white p-16"> */}
         <div className="eventsClothes grid grid-cols-2 lg:grid-cols-4 bg-white justify-between mt-10 px-4 md:px-16 mt-20">
-          {DUMMY_PRODUCTS.map((product, index) => {
+          {productsData.map((product, index) => {
             if (!product.isEvent) return null; // Skip products that are not for events
             return (
               <div
@@ -48,7 +48,7 @@ const EventShowCase = () => {
                     {product.title}
                   </div>
                   <div style={{ fontFamily: "Manrope" }} className="text-[2.5vw] md:text-[1.2vw]">
-                    {DUMMY_PRODUCTS.filter((item) => item.title === product.title && item.isEvent).length} Images
+                    {productsData.filter((item) => item.title === product.title && item.isEvent).length} Images
                   </div>
                 </div>
                 <div className="flex pb-1.5 px-2 md:pb-5 md:px-5 items-center">

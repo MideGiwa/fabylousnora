@@ -18,7 +18,7 @@ export const supabase = createClient(supabaseUrl, supabaseKey, {
 
 // Helper: Get all products
 export async function getAllProducts() {
-  const { data, error } = await supabase.from("products").select("*").order("created_at", { ascending: false });
+  const { data, error } = await supabase.from("products_v_2").select("*").order("created_at", { ascending: false });
 
   if (error) {
     console.error("Error fetching products:", error);
@@ -31,7 +31,7 @@ export async function getAllProducts() {
 export async function getProductsByCategory(category) {
   if (category === "all" || !category) return getAllProducts();
 
-  const { data, error } = await supabase.from("products").select("*").eq("category", category).order("created_at", { ascending: false });
+  const { data, error } = await supabase.from("products_v_2").select("*").eq("category", category).order("created_at", { ascending: false });
 
   if (error) throw error;
   return data || [];
@@ -70,7 +70,7 @@ export async function addProduct(productData, imageFile) {
   }
 
   const { data, error } = await supabase
-    .from("products")
+    .from("products_v_2")
     .insert([{ ...productData, image_url: imageUrl }])
     .select();
 
@@ -87,7 +87,7 @@ export async function updateProduct(id, productData, imageFile) {
   }
 
   const { data, error } = await supabase
-    .from("products")
+    .from("products_v_2")
     .update({ ...productData, image_url: imageUrl })
     .eq("id", id)
     .select();
@@ -98,7 +98,7 @@ export async function updateProduct(id, productData, imageFile) {
 
 // Helper: Delete product
 export async function deleteProduct(id) {
-  const { error } = await supabase.from("products").delete().eq("id", id);
+  const { error } = await supabase.from("products_v_2").delete().eq("id", id);
 
   if (error) throw error;
 }

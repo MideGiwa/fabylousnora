@@ -20,15 +20,16 @@ import { useContext } from "react";
 import { AppContext } from "../context/context";
 
 const Index = () => {
-  const { DUMMY_PRODUCTS } = useContext(AppContext);
+  const { productsData } = useContext(AppContext);
 
-  const newArrivals = DUMMY_PRODUCTS.filter((product) => {
-    const productDate = new Date(product.date);
-    const today = new Date();
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(today.getDate() - 30);
-    return productDate >= thirtyDaysAgo;
-  })
+  const newArrivals = productsData
+    .filter((product) => {
+      const productDate = new Date(product.date);
+      const today = new Date();
+      const thirtyDaysAgo = new Date();
+      thirtyDaysAgo.setDate(today.getDate() - 30);
+      return productDate >= thirtyDaysAgo;
+    })
     // Sort by date descending (newest first)
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     // Take only the first 8 products
@@ -41,7 +42,8 @@ const Index = () => {
   //   { id: 4, image: newArrival4, title: "Ankara Fabric For Ladies", price: 100 },
   // ];
 
-  const queensCollection = DUMMY_PRODUCTS.filter((product) => product.type === "Women")
+  const queensCollection = productsData
+    .filter((product) => product.type === "Women")
     // Sort by date descending (newest first)
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     // Take only the first 8 products
@@ -54,7 +56,8 @@ const Index = () => {
   //   { id: 8, image: newArrival2, title: "Ankara Fabric For Ladies", price: 100 },
   // ];
 
-  const accessories = DUMMY_PRODUCTS.filter((product) => product.type === "Accessories")
+  const accessories = productsData
+    .filter((product) => product.type === "Accessories")
     // Sort by date descending (newest first)
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     // Take only the first 8 products

@@ -7,9 +7,9 @@ import ProductCard from "./ProductCard.jsx"; // Adjust the path as needed
 import womenHero from "../components/IMG_WEBP/womenHero.webp"; // Assuming this is the correct path for the hero image
 
 const ShopForWomen = () => {
-  const { DUMMY_PRODUCTS, type } = useContext(AppContext);
+  const { productsData, type } = useContext(AppContext);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [products, setProducts] = useState(DUMMY_PRODUCTS);
+  const [products, setProducts] = useState(productsData);
   const [sortOption, setSortOption] = useState("default"); // New state for sorting
 
   const applySorting = (currentProducts, option) => {
@@ -25,7 +25,7 @@ const ShopForWomen = () => {
   };
 
   const handleApplyFilters = ({ categories, priceRange }) => {
-    const filtered = DUMMY_PRODUCTS.filter((p) => {
+    const filtered = productsData.filter((p) => {
       const catOk = categories.length === 0 || categories.includes(p.category);
       const priceOk = p.price >= priceRange[0] && p.price <= priceRange[1];
       return catOk && priceOk;

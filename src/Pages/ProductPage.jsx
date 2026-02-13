@@ -3,13 +3,13 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../context/context.jsx";
 
-// import { DUMMY_PRODUCTS } from './ShopForMen'; // Assuming this path is correct
+// import { productsData } from './ShopForMen'; // Assuming this path is correct
 
 import ProductCard from "../components/ProductCard.jsx"; // Assuming this path is correct
 import CartOverlay from "./CartOverlay";
 
 function ProductDetailsContent({ selectedSize, setSelectedSize, quantity, handleDecrement, handleIncrement }) {
-  const { DUMMY_PRODUCTS } = useContext(AppContext); // Assuming you have a context providing DUMMY_PRODUCTS
+  const { productsData } = useContext(AppContext); // Assuming you have a context providing productsData
   return (
     <>
       <div className="mb-6">
@@ -48,7 +48,7 @@ function ProductDetailsContent({ selectedSize, setSelectedSize, quantity, handle
 }
 
 function ProductPage() {
-  const { DUMMY_PRODUCTS } = useContext(AppContext);
+  const { productsData } = useContext(AppContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -70,12 +70,12 @@ function ProductPage() {
   const { cartItems, setCartItems } = useContext(AppContext);
 
   useEffect(() => {
-    const foundProduct = DUMMY_PRODUCTS.find((p) => p.id === Number(id));
+    const foundProduct = productsData.find((p) => p.id === Number(id));
     if (foundProduct) {
       setProduct(foundProduct);
       setSelectedImage(foundProduct.image);
 
-      const others = DUMMY_PRODUCTS.filter((p) => p.id !== foundProduct.id);
+      const others = productsData.filter((p) => p.id !== foundProduct.id);
       const shuffled = others.sort(() => 0.5 - Math.random());
       setRelatedProducts(shuffled.slice(0, 8));
     } else {
