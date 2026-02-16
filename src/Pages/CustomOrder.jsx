@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import BackgroundImage from "../components/IMG/aboutusimgtwo.jpg";
 import { supabase } from '../lib/supabaseClient';
+import { useToast } from '../context/ToastContext';
 
 function CustomOrder() {
   const [email, setEmail] = useState('');
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { addToast } = useToast();
 
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -44,7 +46,7 @@ function CustomOrder() {
         imageUrl = await uploadImage(selectedFile);
       }
 
-      const { error } = await supabase.from('orders').insert([
+      const { data, error } = await supabase.from('orders').insert([
         {
           email,
           order_type: 'custom',
@@ -54,11 +56,26 @@ function CustomOrder() {
           total_amount: 0, // Will be set by admin later
           shipping_address: {}, // Placeholder
         }
-      ]);
+      ]).select(); // Add .select() to get the inserted data
 
       if (error) throw error;
 
-      alert("Request Sent Successfully! We will contact you shortly.");
+      // 3. Trigger Email Notification (Resend)
+      // We don't block the UI for this, just fire and forget or log error quietly
+      supabase.functions.invoke('resend-order-alert', {
+        body: {
+          order_id: data[0].id,
+          email: email,
+          total_amount: 0, // Custom orders might not have price yet
+          order_type: 'custom',
+          items: [],
+          shipping_address: null
+        }
+      }).then(({ error }) => {
+        if (error) console.error("Failed to send email alert:", error);
+      });
+
+      addToast("Request Sent Successfully! We will review it and get back to you shortly via email.", "success");
 
       // Reset form
       setEmail('');
@@ -67,7 +84,7 @@ function CustomOrder() {
 
     } catch (error) {
       console.error('Error submitting custom order:', error);
-      alert("Failed to send request. Please try again.");
+      addToast("Failed to send request. Please try again.", "error");
     } finally {
       setLoading(false);
     }
