@@ -122,20 +122,7 @@ const Footer = () => {
               Subscribe to get latest offers
             </p>
 
-            <form
-              className="relative max-w-xs"
-              onSubmit={(e) => {
-                e.preventDefault();
-                subscribe(e.target[0].value);
-                e.target[0].value = "";
-                // setNewLetterReg(true);
-                setFromNewLetter(true);
-              }}>
-              <input type="email" placeholder="Your email" className="w-full py-3 pr-14 bg-transparent border-b-2 border-white/40 focus:border-white outline-none transition-all duration-300 text-white placeholder-white/60" style={{ fontFamily: "Nunito, sans-serif", fontSize: "15px" }} />
-              <button type="submit" className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl hover:text-[#BD007C] transition duration-300">
-                →
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
 
@@ -151,6 +138,72 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+  );
+};
+
+// Sub-component for form logic to keep Footer clean
+const NewsletterForm = () => {
+  const [email, setEmail] = React.useState("");
+  const [status, setStatus] = React.useState("idle"); // idle, loading, success, error
+  const [message, setMessage] = React.useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      // Using Supabase client found in context or creating a direct fetch to the function URL
+      // Since we might not have supabase client in Footer scope easily without import, let's assume we can fetch directly or use the one from context if available.
+      // Better: Import supabase client directly.
+
+      // Dynamic import to avoid top-level dependency issues if any, or just fetch if we know the URL structure.
+      // But standard way is sending to the function.
+      const { supabase } = await import("../lib/supabaseClient");
+
+      const { data, error } = await supabase.functions.invoke('mailerlite-newsletter', {
+        body: { email }
+      });
+
+      if (error) throw error;
+
+      setStatus("success");
+      setMessage(data?.message || "Subscribed successfully!");
+      setEmail("");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setMessage(err.message || "Failed to subscribe.");
+    }
+  };
+
+  return (
+    <div>
+      <form className="relative max-w-xs" onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          disabled={status === 'loading' || status === 'success'}
+          className="w-full py-3 pr-14 bg-transparent border-b-2 border-white/40 focus:border-white outline-none transition-all duration-300 text-white placeholder-white/60 disabled:opacity-50"
+          style={{ fontFamily: "Nunito, sans-serif", fontSize: "15px" }}
+        />
+        <button
+          type="submit"
+          disabled={status === 'loading' || status === 'success'}
+          className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl hover:text-[#BD007C] transition duration-300 disabled:opacity-50">
+          {status === 'loading' ? '...' : '→'}
+        </button>
+      </form>
+      {message && (
+        <p className={`mt-2 text-xs ${status === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+          {message}
+        </p>
+      )}
+    </div>
   );
 };
 
