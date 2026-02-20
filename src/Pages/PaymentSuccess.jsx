@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import NoraLogo from "../components/IMG/noralogo.png";
 import { Link, useSearchParams } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
+import { AppContext } from "../context/context";
 
 export default function PaymentSuccess() {
   const [loading, setLoading] = useState(true);
@@ -9,6 +10,7 @@ export default function PaymentSuccess() {
   const [error, setError] = useState("");
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
+  const { setCartItems } = useContext(AppContext);
 
   useEffect(() => {
     if (!sessionId) {
@@ -34,6 +36,8 @@ export default function PaymentSuccess() {
         }
 
         setOrder(data);
+        // Clear the cart on successful verification
+        setCartItems([]);
       } catch (err) {
         console.error("Failed to fetch order:", err);
         setError("Could not retrieve order details. Please check your email.");
@@ -43,7 +47,7 @@ export default function PaymentSuccess() {
     };
 
     fetchOrder();
-  }, [sessionId]);
+  }, [sessionId, setCartItems]);
 
   if (loading) {
     return (
