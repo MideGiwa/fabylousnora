@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import NoraLogo from "../components/IMG/noralogo.png";
 import { Link, useSearchParams } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
+import { AppContext } from "../context/context";
 
 export default function PaymentSuccess() {
   const [loading, setLoading] = useState(true);
@@ -9,6 +10,7 @@ export default function PaymentSuccess() {
   const [error, setError] = useState("");
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
+  const { setCartItems } = useContext(AppContext);
 
   useEffect(() => {
     if (!sessionId) {
@@ -34,6 +36,8 @@ export default function PaymentSuccess() {
         }
 
         setOrder(data);
+        // Clear the cart on successful verification
+        setCartItems([]);
       } catch (err) {
         console.error("Failed to fetch order:", err);
         setError("Could not retrieve order details. Please check your email.");
@@ -43,7 +47,7 @@ export default function PaymentSuccess() {
     };
 
     fetchOrder();
-  }, [sessionId]);
+  }, [sessionId, setCartItems]);
 
   if (loading) {
     return (
@@ -78,24 +82,27 @@ export default function PaymentSuccess() {
           </div>
 
           {order ? (
-            <div className="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-100">
-              <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
-                <span className="text-sm text-gray-500">Order ID</span>
-                <span className="font-mono font-medium">#{order.id}</span>
-              </div>
+            <div className="bg-green-50 rounded-lg p-6 mb-8 text-left">
+              <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">Order Summary</h2>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Order Number:</span>
+                  <span className="font-semibold">{order.order_number || `#${order.id}`}</span>
+                </div>
 
-              <div className="space-y-3 mb-4">
-                {order.order_items?.map((item) => (
-                  <div key={item.id} className="flex justify-between text-sm">
-                    <span className="text-gray-700 truncate w-2/3">{item.quantity}x {item.title}</span>
-                    <span className="font-medium">${item.price}</span>
-                  </div>
-                ))}
-              </div>
+                <div className="space-y-3 mb-4">
+                  {order.order_items?.map((item) => (
+                    <div key={item.id} className="flex justify-between text-sm">
+                      <span className="text-gray-700 truncate w-2/3">{item.quantity}x {item.title}</span>
+                      <span className="font-medium">${item.price}</span>
+                    </div>
+                  ))}
+                </div>
 
-              <div className="flex justify-between items-center pt-2 border-t border-gray-200">
-                <span className="font-bold text-gray-900">Total</span>
-                <span className="font-bold text-green-600 text-lg">${order.total_amount.toFixed(2)}</span>
+                <div className="flex justify-between items-center pt-2 border-t border-gray-200">
+                  <span className="font-bold text-gray-900">Total</span>
+                  <span className="font-bold text-green-600 text-lg">${order.total_amount.toFixed(2)}</span>
+                </div>
               </div>
             </div>
           ) : (
